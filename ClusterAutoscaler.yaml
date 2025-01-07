@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-autoscaler-config
+  namespace: kube-system
+  labels:
+    component: cluster-autoscaler
+    provider: kubernetes
+    purpose: custom-settings
+  annotations:
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+data:
+  scan-interval: "10s"
+  scale-down-delay-after-add: "10m"
+  scale-down-unneeded-time: "10m"
+  balance-similar-node-groups: "true"
+  expander: "least-waste"
